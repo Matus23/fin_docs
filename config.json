@@ -1,0 +1,26 @@
+{
+  "mode": "fidelity",
+  "example": {
+    "file": "data/Simple_Balance_Sheet.pdf",
+    "load_type": "lumber",
+    "model": "llama3",
+    "queries": ["What is a balance sheet?",
+      "How many example balance sheets does the provided document contain?",
+      "What is the total assets value for 'CIDER HILL PLAYERS' ?"]
+  },
+  "fidelity": {
+    "file": "data/Fidelity_AR.pdf",
+    "load_type": "lumber",
+    "model": "llama3",
+    "queries": [
+      "Given Fidelity's annual report, called 'Fidelity_AR.pdf', what is Fidelity's total assets under management as of 2024?",
+      "Given Fidelity's annual report, called 'Fidelity_AR.pdf', what is the value of Fidelity's total assets?",
+      "Given Fidelity's annual report, called 'Fidelity_AR.pdf', what is the investment object of Fidelity's Diversified Markets Fund?",
+      "What was Fidelity's lowest share price in 2024?",
+      "How did Fidelity's lowest share price change over the years?",
+      "What is Fidelity's total assets as of 31st of October 2024?",
+      "What is Fidelity's total liabilities as of 31st of October 2024?",
+      "Tell me what you found out about Fidelity"
+    ]  
+  }
+}

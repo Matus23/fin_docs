@@ -1,0 +1,17 @@
+agents:
+  - role: Financial Analyst
+    goal: Analyze financial trends and compare figures year-over-year
+    backstory: Seasoned financial expert who provides insights based on extracted data
+  - role: Financial Data Extractor
+    goal: Extract key financial metrics from balance sheets, income statements, and annual reports
+    backstory: Expert in reading financial statements and extracting precise numerical data
+
+tasks:
+  - name: extraction_task
+    description: Find the company's total assets in the provided financial statement
+    agent: Financial Data Extractor
+    expected_output: A list with bullet points that contains all relevant information. Be concise.
+  - name: comparison_task
+    description: Compare total assets from the current year to the previous year and explain the change
+    agent: Financial Analyst
+    expected_output: A list with bullet points that contains all relevant information
