@@ -1,6 +1,7 @@
 import os
 import yaml
 import json
+import litellm
 # import ollama
 import PyPDF2
 from langchain_community.vectorstores import FAISS
@@ -12,6 +13,7 @@ from langchain_community.document_loaders import TextLoader
 from langchain.docstore.document import Document
 from langchain_community.document_loaders import PDFPlumberLoader
 from crewai import Agent, Task, Crew
+from crewai_tools import SerperDevTool, WikipediaTools
 
 
 # Load and preprocess PDF financial statement
@@ -65,9 +67,9 @@ if __name__ == '__main__':
     llm = OllamaLLM(model=config['model'])
     qa_chain = RetrievalQA.from_chain_type(llm, retriever=retriever)
 
-    for query in config['queries']:
-        response = qa_chain.invoke(query)
-        print(f"Query: {response['query']}\n Result: {response['result']}\n\n")
+    # for query in config['queries']:
+    #     response = qa_chain.invoke(query)
+    #     print(f"Query: {response['query']}\n Result: {response['result']}\n\n")
 
     ############################################################
     #    Agent expansion
@@ -75,13 +77,18 @@ if __name__ == '__main__':
     with open('agents_config.yaml', "r") as file:
         ag_config = yaml.safe_load(file)
 
+    search_tool = SerperDevTool()
+    wiki_tool = WikipediaTools()
+
     agents = {}
     for agent_data in ag_config["agents"]:
         agent = Agent(
             role=agent_data["role"],
             goal=agent_data["goal"],
             backstory=agent_data["backstory"],
-            llm=llm
+            llm=litellm.completion(model=f'ollama/{config['model']}', provider="ollama"),
+            verbose=True,
+            tools=[search_tool, wiki_tool]
         )
         agents[agent_data["role"]] = agent
 
@@ -98,6 +105,6 @@ if __name__ == '__main__':
 
     for query in config['queries']:
         response = fin_crew.kickoff()
-        print(f"Query: {response['query']}\n Result: {response['result']}\n\n")
+        print(f"Query: {query}\n Result: {response}\n\n")
 
 
