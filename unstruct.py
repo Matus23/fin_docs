@@ -19,6 +19,11 @@ if __name__ == "__main__":
         "Total Liabilities": r"(?i)total liabilities[\s:]*([\d,\.]+)",
         "Total Sales": r"(?i)Total sales[\s:]*([\d,\.]+)",
         "Total purchases": r"(?i)Total purchases[\s:]*([\d,\.]+)",
+        "Total assets": r"(?i)total assets[\s:]*([\d,\.]+)",
+        "Total revenue": r"(?i)total revenue[\s:]*([\d,\.]+)",
+        "Total expenses": r"(?i)total expenses[\s:]*([\d,\.]+)",
+        "Total transaction costs": r"(?i)total transaction costs[\s:]*([\d,\.]+)",
+        "Total transaction costs in 2023": r"(?i)total transaction costs 2023[\s:]*([\d,\.]+)",
     }
 
     # Extract financial data
